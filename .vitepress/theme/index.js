@@ -1,18 +1,13 @@
 // docs/.vitepress/theme/index.js
+import DefaultTheme from 'vitepress/theme'
+
 export default {
-  enhanceApp({ app, router, siteData }) {
-    // nothing here yet
-  },
+  extends: DefaultTheme,
 
-  // ← THIS IS THE IMPORTANT PART
-  transformHtml: (_, id, { pageData }) => {
-    if (!/index\.html$/.test(id)) return
-
-    return {
-      head: [
-        // Google site verification tag
-        ['meta', { name: 'google-site-verification', content: 'vCCRLHnUpgkc-JQDSlr1bUYWm3dXRf1MMlep5ZiDjPE' }]
-      ]
-    }
+  // This injects the Google verification tag into every page
+  transformHead(context) {
+    return [
+      ['meta', { name: 'google-site-verification', content: 'vCCRLHnUpgkc-JQDSlr1bUYWm3dXRf1MMlep5ZiDjPE' }]
+    ]
   }
 }
