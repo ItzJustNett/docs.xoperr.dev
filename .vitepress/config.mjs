@@ -1,3 +1,4 @@
+// docs/.vitepress/config.mjs  ← note the .mjs
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-username' },
+      { icon: 'github', link: 'https://github.com/your-username' },  // update this
       { icon: 'discord', link: 'https://discord.gg/CUQdkPzGKb' }
     ],
 
