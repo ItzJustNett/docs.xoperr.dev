@@ -2,10 +2,12 @@
   command = "npm run docs:build"
   publish = ".vitepress/dist"
 
+# ← THIS IS THE NEW 2024+ SYNTAX THAT ACTUALLY WORKS
+[build.environment]
+  NODE_VERSION = "20"
+
+# Optional but nice
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
-
-[build.environment]
-  NODE_VERSION = "20.12.0"
