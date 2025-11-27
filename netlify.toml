@@ -1,0 +1,11 @@
+[build]
+  command = "npm run docs:build"
+  publish = ".vitepress/dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+
+[build.environment]
+  NODE_VERSION = "20.12.0"
