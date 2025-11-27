@@ -1,12 +1,10 @@
 [build]
   command = "npm run docs:build"
-  publish = ".vitepress/dist"
+  publish = ".vitepress/dist"  # ← This is the correct path for VitePress
 
-# ← THIS IS THE NEW 2024+ SYNTAX THAT ACTUALLY WORKS
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "20"  # Backup for .nvmrc
 
-# Optional but nice
 [[headers]]
   for = "/*"
   [headers.values]
