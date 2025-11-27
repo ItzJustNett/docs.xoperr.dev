@@ -15,14 +15,14 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-username' },  // update this
+      { icon: 'github', link: 'https://github.com/ItzJustNett' },  // update this
       { icon: 'discord', link: 'https://discord.gg/CUQdkPzGKb' }
     ],
 
     externalLinkIcon: true,
 
     footer: {
-      message: 'Made with VitePress',
+      message: 'Made with love and care',
       copyright: '© 2025 Xoperr'
     }
   }
