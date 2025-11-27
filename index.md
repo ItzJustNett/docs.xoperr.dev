@@ -20,6 +20,8 @@ features:
     icon:
       src: /icons/gem.svg
       alt: BlissGems
+      width: 32
+      height: 32
 
   - title: BetterStasis
     details: A Minecraft plugin for Paper 1.21+ that implements a pearl stasis chamber system with tons of customization.
@@ -27,6 +29,8 @@ features:
     icon:
       src: /icons/pearl.png
       alt: BetterStasis
+      width: 32
+      height: 32
 
   - title: GeminiMC
     details: A powerful Minecraft plugin that integrates Google's Gemini AI to help server administrators manage their servers through natural language commands.
@@ -34,6 +38,8 @@ features:
     icon:
       src: /icons/GeminiMC-min.png
       alt: GeminiMC
+      width: 32
+      height: 32
 
   # I`ll add more plugins here later
 ---
