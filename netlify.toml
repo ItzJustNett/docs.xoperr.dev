@@ -1,6 +1,6 @@
 [build]
   command = "npm run docs:build"
-  publish = ".vitepress/dist"  # ← This is the correct path for VitePress
+  publish = "docs/.vitepress/dist"  # ← This is the correct path for VitePress
 
 [build.environment]
   NODE_VERSION = "20"  # Backup for .nvmrc
