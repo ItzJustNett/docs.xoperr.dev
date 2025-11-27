@@ -2,27 +2,30 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Xoperr Dev",
-  description: "A docs for xoperr.dev",
+  title: 'Xoperr Dev',
+  description: 'Documentation for my Minecraft plugins & mods',
+
+  ignoreDeadLinks: true,
+
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Plugins', link: '/plugins/' },
+      { text: 'Tutorials', link: '/tutorials/' }
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    // Optional: nice little arrow on external links (Modrinth, etc.)
+    externalLinkIcon: true,
 
+    // Social links in the header/footer
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+      { icon: 'github', link: 'https://github.com/ItzJustNett' }
+      { icon: 'discord', link: 'https://discord.gg/CUQdkPzGKb' }
+    ],
+
+    footer: {
+      message: 'Made with love and care',
+      copyright: '© 2025 Xoperr'
+    }
   }
 })
