@@ -5,9 +5,17 @@ export default defineConfig({
   title: 'Xoperr Dev',
   description: 'Documentation for my Minecraft plugins & mods',
 
+  head: [
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon.png' }]
+  ],
+
   ignoreDeadLinks: true,
 
   themeConfig: {
+    logo: '/favicon.png',
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Plugins', link: '/plugins/' },
