@@ -189,17 +189,20 @@ fire:
   particles: "FLAME"
   sound: "ENTITY_BLAZE_SHOOT"
 
-# Flux Gem (Time Manipulation)
+# Flux Gem (Ground & Ray)
 flux:
   enabled: true
-  radius: 15
-  duration: 200             # ticks (10 seconds)
-  slow_percentage: 0.5      # 50% speed
-  user_speed_boost: 2.0     # 200% speed
-  affect_projectiles: true
-  affect_other_flux_users: false
-  particles: "END_ROD"
-  sound: "BLOCK_PORTAL_TRAVEL"
+  # Ground ability settings
+  ground_range: 20          # blocks
+  stun_duration: 100        # ticks (5 seconds)
+
+  # Flux Ray ability settings (Tier 2)
+  ray_range: 20             # blocks
+  ray_duration: 160         # ticks (8 seconds)
+  ray_damage_per_second: 1.0 # HP (0.5 hearts)
+
+  particles: "ELECTRIC_SPARK"
+  sound: "ENTITY_LIGHTNING_BOLT_THUNDER"
 
 # Life Gem (Healing)
 life:

@@ -13,7 +13,7 @@ BlissGems features 8 unique gem types, each with distinct abilities and characte
 |-----|----------------|----------|-------------|----------|
 | Astra | Teleportation | 30s | 10% | Mobility, Exploration |
 | Fire | Fire Blast | 20s | 8% | Combat, PvP |
-| Flux | Time Slow | 45s | 12% | Utility, Escape |
+| Flux | Ground (Stun) | 60s | 12% | PvP, Disable |
 | Life | Instant Heal | 25s | 10% | Survival, Support |
 | Puff | Cloud Step | 15s | 5% | Traversal, Building |
 | Speed | Speed Boost | 10s | 4% | Movement, Racing |
@@ -101,26 +101,36 @@ fire_gem:
 
 **Theme:** Time and Space Distortion
 
-**Primary Ability: Time Slow**
-- **Effect:** Slows time in 15-block radius (affects mobs and players)
-- **Activation:** Right-click to activate
-- **Duration:** 10 seconds
-- **Cooldown:** 45 seconds
+**Primary Ability: Ground**
+- **Effect:** Stuns target player for 5 seconds
+- **Activation:** Right-click while looking at a player
+- **Range:** 20 blocks
+- **Duration:** 5 seconds
+- **Cooldown:** 60 seconds (1 minute)
 - **Energy Cost:** 12% per use
-- **Particles:** Clock particles swirling around user
+- **Particles:** Electric spark particles
 
 **Special Properties:**
-- Affected entities move at 50% speed
-- User gains speed boost (200% normal speed)
-- Affects projectiles (slows arrows, fireballs)
-- Does not affect other Flux gem users
+- Target cannot move or jump during stun
+- Target's ender pearls and chorus fruits are disabled for 5 seconds
+- Target can only eat golden apples during stun
+- Target's mining and attack speed are drastically reduced
+
+**Secondary Ability: Flux Ray** (Tier 2)
+- **Effect:** Fires a continuous laser beam that damages entities
+- **Activation:** Shift + Right-click to activate
+- **Range:** 20 blocks
+- **Duration:** 8 seconds (configurable 7-10s)
+- **Cooldown:** 60 seconds (1 minute)
+- **Damage:** 0.5 hearts per second (1 HP/second)
+- **Particles:** Electric spark and end rod particles forming laser beam
 
 **Strategic Uses:**
-- Boss fight advantage
-- Escape dangerous situations
-- PvP combat tactics
-- Mob crowd control
-- Precise building and redstone work
+- Disable enemy players in PvP combat
+- Prevent escapes via ender pearls
+- Sustained damage over time with laser beam
+- Area denial with continuous ray attack
+- Combo potential with ground stun into laser damage
 
 **Oraxen Configuration:**
 ```yaml
@@ -129,8 +139,9 @@ flux_gem:
   material: CLOCK
   PersistentData:
     gem_type: "FLUX"
-    radius: 15
-    duration: 200
+    range: 20
+    stun_duration: 100
+    ray_duration: 160
 ```
 
 ---
@@ -339,7 +350,7 @@ wealth_gem:
 4. Strength Gem - 20 seconds
 5. Life Gem - 25 seconds
 6. Astra Gem - 30 seconds
-7. Flux Gem - 45 seconds
+7. Flux Gem - 60 seconds
 8. Wealth Gem - 60 seconds
 
 ### By Energy Cost (Lowest to Highest)
