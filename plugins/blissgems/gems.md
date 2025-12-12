@@ -1,416 +1,398 @@
 ---
 title: Gem Types & Abilities
-description: Complete reference for all 8 gem types and their abilities
+description: Complete reference for all 8 gem types, their abilities, and passives
 ---
 
 # Gem Types & Abilities
 
-BlissGems features 8 unique gem types, each with distinct abilities and characteristics. This guide covers all gem types, their abilities, and strategic uses.
+BlissGems features 8 unique gem types, each with distinct abilities, passives, and tier progression. This guide covers all gem types, their mechanics, and strategic uses.
 
-## All Gem Types
+## Quick Reference Table
 
-| Gem | Primary Ability | Cooldown | Energy Cost | Best For |
-|-----|----------------|----------|-------------|----------|
-| Astra | Teleportation | 30s | 10% | Mobility, Exploration |
-| Fire | Fire Blast | 20s | 8% | Combat, PvP |
-| Flux | Ground (Stun) | 60s | 12% | PvP, Disable |
-| Life | Instant Heal | 25s | 10% | Survival, Support |
-| Puff | Cloud Step | 15s | 5% | Traversal, Building |
-| Speed | Speed Boost | 10s | 4% | Movement, Racing |
-| Strength | Damage Amp | 20s | 7% | Combat, Boss Fights |
-| Wealth | Fortune Buff | 60s | 15% | Mining, Farming |
-
-## Detailed Gem Reference
-
-### Astra Gem
-
-**Theme:** Teleportation and Space Manipulation
-
-**Primary Ability: Warp**
-- **Effect:** Teleports player to looked-at location (max 50 blocks)
-- **Activation:** Right-click while looking at target location
-- **Cooldown:** 30 seconds
-- **Energy Cost:** 10% per use
-- **Particles:** Purple spiral particles at departure and arrival
-
-**Special Properties:**
-- Teleports through glass and transparent blocks
-- Cannot teleport into solid blocks
-- Safe landing - prevents fall damage
-- Works across dimensions (if enabled in config)
-
-**Strategic Uses:**
-- Quick escapes in PvP combat
-- Efficient exploration and travel
-- Base infiltration (with proper permissions)
-- Parkour and obstacle courses
-- Emergency evacuation
-
-**Oraxen Configuration:**
-```yaml
-astra_gem:
-  displayname: "<gradient:#A855F7:#EC4899>Astra Gem</gradient>"
-  material: AMETHYST_SHARD
-  PersistentData:
-    gem_type: "ASTRA"
-    max_distance: 50
-    prevent_fall_damage: true
-```
+| Gem | Primary Ability | Secondary (T2) | Cooldown | Best For |
+|-----|----------------|----------------|----------|----------|
+| Astra | Astral Daggers | Astral Projection | 15s / 120s | Mobility, PvP |
+| Fire | Charged Fireball | Cozy Campfire | 10s / 60s | DPS, Area Control |
+| Flux | Flux Beam | Ground | 60s / 20s | Armor-Piercing, CC |
+| Life | Heart Drainer | Circle of Life | 30s / 60s | Sustain, Support |
+| Puff | Dash | Breezy Bash | 5s / 10s | Mobility, Escape |
+| Speed | Sloth's Sedative | Speed Storm | 35s / 45s | CC, Speed |
+| Strength | Bloodthorns | Chad Strength | 20s / 30s | Melee DPS |
+| Wealth | Durability Chip | Rich Rush | 30s / 540s | Utility, Economy |
 
 ---
 
-### Fire Gem
+## Astra Gem 🌌
 
-**Theme:** Offensive Fire Abilities
+**Theme:** Astral projection, teleportation, and soul manipulation
 
-**Primary Ability: Fire Blast**
-- **Effect:** Launches a fireball that explodes on impact
-- **Activation:** Right-click to fire
-- **Cooldown:** 20 seconds
-- **Energy Cost:** 8% per use
-- **Damage:** 6 hearts (12 HP) direct hit, 3 hearts (6 HP) splash
-- **Particles:** Flame particles trailing projectile
-
-**Special Properties:**
-- Sets targets on fire for 5 seconds
-- Small explosion radius (3 blocks)
-- Can destroy certain blocks (configurable)
-- Fire resistance while holding (if enabled)
-
-**Strategic Uses:**
-- Ranged combat advantage
-- Area denial in PvP
-- Mob farming efficiency
-- Breaking ice and snow quickly
-- Lighting furnaces from distance
-
-**Oraxen Configuration:**
-```yaml
-fire_gem:
-  displayname: "<gradient:#FF6B35:#F7931E>Fire Gem</gradient>"
-  material: FIRE_CHARGE
-  PersistentData:
-    gem_type: "FIRE"
-    damage: 12
-    fire_duration: 100
-```
-
----
-
-### Flux Gem
-
-**Theme:** Time and Space Distortion
-
-**Primary Ability: Ground**
-- **Effect:** Stuns target player for 5 seconds
-- **Activation:** Right-click while looking at a player
-- **Range:** 20 blocks
-- **Duration:** 5 seconds
-- **Cooldown:** 60 seconds (1 minute)
-- **Energy Cost:** 12% per use
-- **Particles:** Electric spark particles
-
-**Special Properties:**
-- Target cannot move or jump during stun
-- Target's ender pearls and chorus fruits are disabled for 5 seconds
-- Target can only eat golden apples during stun
-- Target's mining and attack speed are drastically reduced
-
-**Secondary Ability: Flux Ray** (Tier 2)
-- **Effect:** Fires a continuous laser beam that damages entities
-- **Activation:** Shift + Right-click to activate
-- **Range:** 20 blocks
-- **Duration:** 8 seconds (configurable 7-10s)
-- **Cooldown:** 60 seconds (1 minute)
-- **Damage:** 0.5 hearts per second (1 HP/second)
-- **Particles:** Electric spark and end rod particles forming laser beam
-
-**Strategic Uses:**
-- Disable enemy players in PvP combat
-- Prevent escapes via ender pearls
-- Sustained damage over time with laser beam
-- Area denial with continuous ray attack
-- Combo potential with ground stun into laser damage
-
-**Oraxen Configuration:**
-```yaml
-flux_gem:
-  displayname: "<gradient:#00D9FF:#00FFF5>Flux Gem</gradient>"
-  material: CLOCK
-  PersistentData:
-    gem_type: "FLUX"
-    range: 20
-    stun_duration: 100
-    ray_duration: 160
-```
-
----
-
-### Life Gem
-
-**Theme:** Healing and Regeneration
-
-**Primary Ability: Instant Heal**
-- **Effect:** Instantly restores health and removes negative effects
-- **Activation:** Right-click to heal
-- **Cooldown:** 25 seconds
-- **Energy Cost:** 10% per use
-- **Healing:** 6 hearts (12 HP) instant + regeneration
-- **Particles:** Heart and cross particles
-
-**Special Properties:**
-- Removes poison, wither, and hunger effects
-- Grants regeneration II for 5 seconds
-- Can heal nearby allies (5-block radius if configured)
-- Prevents death once per gem (if at PRISTINE+3 or higher)
-
-**Strategic Uses:**
-- Emergency healing in combat
-- Counteract poison attacks
-- Support role in team fights
-- Hardcore survival safety
-- Boss fight sustainability
-
-**Oraxen Configuration:**
-```yaml
-life_gem:
-  displayname: "<gradient:#4ADE80:#10B981>Life Gem</gradient>"
-  material: GLISTERING_MELON_SLICE
-  PersistentData:
-    gem_type: "LIFE"
-    heal_amount: 12
-    regeneration_duration: 100
-```
-
----
-
-### Puff Gem
-
-**Theme:** Cloud and Air Manipulation
-
-**Primary Ability: Cloud Step**
-- **Effect:** Creates temporary cloud platforms beneath player
-- **Activation:** Right-click to toggle cloud walk mode
-- **Duration:** 15 seconds or until deactivated
+### Primary: Astral Daggers
+- **Activation:** Right-click
 - **Cooldown:** 15 seconds
-- **Energy Cost:** 5% activation + 1% per second active
-- **Particles:** Cloud particles beneath feet
+- **Damage:** 4.0 HP (2 hearts) per dagger
+- **Effect:** Shoots 3 homing projectiles at nearest enemy within 30 blocks
+- **Visual:** Purple particle trails
+- **Target:** Nearest hostile mob or player
 
-**Special Properties:**
-- Creates temporary barriers (last 3 seconds each)
-- Can walk on air up to 5 blocks high
-- Platforms disappear after stepping away
-- No fall damage while active
-- Can create permanent clouds (admin-only)
+### Secondary: Astral Projection (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 120 seconds (2 minutes)
+- **Duration:** 10 seconds
+- **Range:** 150 block radius from origin
+- **Effect:** Enter spectator mode and explore
+- **Features:**
+  - Forced return on boundary or timeout
+  - Cooldown only starts when projection ends
+  - Can be ended early by using ability again
+  - Returns to origin location
+  - Death cancels projection immediately
 
-**Strategic Uses:**
-- Safe descent from heights
-- Building at extreme heights
-- Creating temporary bridges
-- Elytra landing platforms
-- Parkour courses
+### Passives
+- **Phasing** (15% chance): Avoid incoming attacks
+- **Soul Absorption**:
+  - Mob kill: Heal 2.5 hearts (5.0 HP)
+  - Player kill: Heal 5 hearts (10.0 HP)
+- **Soul Capture**: Store up to 2 mobs in gem, release in LIFO order (cannot capture bosses)
 
-**Oraxen Configuration:**
-```yaml
-puff_gem:
-  displayname: "<gradient:#E0E7FF:#C7D2FE>Puff Gem</gradient>"
-  material: WHITE_DYE
-  PersistentData:
-    gem_type: "PUFF"
-    platform_duration: 60
-    max_height: 5
-```
-
----
-
-### Speed Gem
-
-**Theme:** Enhanced Movement
-
-**Primary Ability: Speed Burst**
-- **Effect:** Grants massive speed boost
-- **Activation:** Right-click for burst
-- **Duration:** 8 seconds
-- **Cooldown:** 10 seconds
-- **Energy Cost:** 4% per use
-- **Speed:** 300% normal movement speed
-- **Particles:** Speed lines and dust particles
-
-**Special Properties:**
-- Jump boost II while active
-- Slight hunger increase while running
-- Reduced fall damage (50%)
-- Can break speed limit (configurable)
-
-**Strategic Uses:**
-- Quick travel across distances
-- Combat mobility and dodging
-- Racing and parkour
-- Escape from danger
-- Exploration efficiency
-
-**Oraxen Configuration:**
-```yaml
-speed_gem:
-  displayname: "<gradient:#FCD34D:#F59E0B>Speed Gem</gradient>"
-  material: SUGAR
-  PersistentData:
-    gem_type: "SPEED"
-    speed_multiplier: 3
-    duration: 160
-```
+### Auto-Enchantments (Tier 2)
+None
 
 ---
 
-### Strength Gem
+## Fire Gem 🔥
 
-**Theme:** Combat Power Enhancement
+**Theme:** Destructive fire power and healing flames
 
-**Primary Ability: Power Strike**
-- **Effect:** Amplifies damage and grants strength effect
-- **Activation:** Right-click to activate
-- **Duration:** 12 seconds
+### Primary: Charged Fireball
+- **Activation:** Right-click to start charging, right-click again to fire
+- **Charge Time:** 15 seconds for full charge
+- **Cooldown:** 10 seconds (after firing)
+- **Damage:** Scales 6.0 HP to 18.0 HP based on charge (0-100%)
+- **Effect:** Launches fireball with explosion on impact
+- **Visual:**
+  - Ring, spiral, and ground circle particles during charge
+  - Particles appear AROUND player (waist/feet height, not blocking view)
+  - Massive effects at 100% charge
+- **Yield:** 1.0 to 3.0 explosion size based on charge
+- **Death Protection:** Charging cancels on death
+
+### Secondary: Cozy Campfire (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 60 seconds (1 minute)
+- **Duration:** 15 seconds (config: `fire-campfire`)
+- **Range:** 4 block radius
+- **Effect:** Places campfire that heals caster, burns enemies
+- **Healing:** 0.4 HP + 1 food per second (configurable)
+- **Damage:** 2.0 HP per second to enemies
+- **Burn Duration:** 3 seconds
+- **Visual:** Dense flame ring showing radius boundary
+- **Features:**
+  - Respects trusted players (no damage)
+  - Auto-removes when broken or expired
+  - Regeneration 2 for caster in range
+
+### Passives
+- **Fire Resistance**: Always active
+- **Auto-Smelt**: Ores smelt automatically when mined
+
+### Auto-Enchantments (Tier 2)
+- **Flame** (bows)
+- **Fire Aspect II** (swords)
+
+---
+
+## Flux Gem ⚡
+
+**Theme:** Electric power, armor-piercing, and disruption
+
+### Primary: Flux Beam
+- **Activation:** Right-click to start charging, right-click again to fire
+- **Charge Time:** 15 seconds for full charge
+- **Cooldown:** 60 seconds (1 minute) - Very powerful!
+- **Range:** 30 blocks (raycast targeting)
+- **Damage:**
+  - Base: 5.0 HP (2.5 hearts) uncharged
+  - Max: 15.0 HP (7.5 hearts) at 100% charge
+  - **Bypasses armor** using direct health manipulation
+- **Armor Damage:** Up to 150 durability at 100% charge
+- **Visual:** Electric spark and end rod beam particles
+- **Trusted Players:** Restores armor instead of damaging
+- **Death Protection:** Charging cancels on death
+
+### Secondary: Ground (Tier 2)
+- **Activation:** Shift + Right-click
 - **Cooldown:** 20 seconds
-- **Energy Cost:** 7% per use
-- **Damage Bonus:** +100% (double damage)
-- **Particles:** Critical hit and flame particles
+- **Range:** 20 blocks (raycast targeting)
+- **Duration:** 3 seconds (config: `flux-ground-freeze`)
+- **Targets:** ALL living entities (mobs and players)
+- **Effect:** Freezes target in place
+- **Status Effects:**
+  - Slowness 255 (horizontal freeze)
+  - Slow Falling (prevents jumping/falling)
+  - Mining Fatigue 255
+  - Weakness 255
+- **Visual:** Electric spark circle, enchanted hit particles
+- **Features:**
+  - Respects trusted players
+  - Adds to stunned players list (tracked for StunListener)
+  - Works on bosses and all mob types
 
-**Special Properties:**
-- Knockback increased by 50%
-- Breaks blocks faster while active
-- Stacks with enchantments (sharpness, etc.)
-- Critical hits deal triple damage
+### Passives
+- **Shocking Arrows**: Electric damage on arrow hits (3.0 HP, 8s cooldown using millisecond tracking)
+- **Flow State**: Repeated actions increase speed/haste
+  - 5 action types: Block Break, Arrow Shoot, Attack, Sprint, Jump
+  - Repeating same action within 3 seconds builds flow level (1-5)
+  - Level 1-2: Speed I
+  - Level 3-4: Speed II + Haste I
+  - Level 5: Speed III + Haste II (MAX FLOW STATE)
+  - Resets on timeout or action change
+- **Tireless**: Removes Weakness, Slowness, Hunger effects
 
-**Strategic Uses:**
-- Boss fights and tough mobs
-- PvP combat advantage
-- One-shot weaker enemies
-- Breaking obsidian faster
-- Mining efficiency boost
-
-**Oraxen Configuration:**
-```yaml
-strength_gem:
-  displayname: "<gradient:#DC2626:#991B1B>Strength Gem</gradient>"
-  material: BLAZE_POWDER
-  PersistentData:
-    gem_type: "STRENGTH"
-    damage_multiplier: 2.0
-    duration: 240
-```
-
----
-
-### Wealth Gem
-
-**Theme:** Fortune and Prosperity
-
-**Primary Ability: Fortune Blessing**
-- **Effect:** Grants fortune and luck effects
-- **Activation:** Right-click to activate
-- **Duration:** 30 seconds
-- **Cooldown:** 60 seconds
-- **Energy Cost:** 15% per use
-- **Particles:** Gold and emerald particles
-
-**Special Properties:**
-- Fortune III effect on all tools
-- Increased mob drop rates (2x)
-- Higher chance of rare loot
-- Experience gain multiplier (1.5x)
-- Rare: Duplicate drops (5% chance per item)
-
-**Strategic Uses:**
-- Efficient resource gathering
-- Mining diamonds and ores
-- Mob farm optimization
-- Treasure hunting
-- Enchantment leveling
-
-**Oraxen Configuration:**
-```yaml
-wealth_gem:
-  displayname: "<gradient:#FBBF24:#F59E0B>Wealth Gem</gradient>"
-  material: GOLD_NUGGET
-  PersistentData:
-    gem_type: "WEALTH"
-    fortune_level: 3
-    duration: 600
-```
+### Auto-Enchantments (Tier 2)
+None
 
 ---
 
-## Ability Comparison
+## Life Gem ❤️
 
-### By Cooldown (Fastest to Slowest)
+**Theme:** Health manipulation and regeneration
 
-1. Speed Gem - 10 seconds
-2. Puff Gem - 15 seconds
-3. Fire Gem - 20 seconds
-4. Strength Gem - 20 seconds
-5. Life Gem - 25 seconds
-6. Astra Gem - 30 seconds
-7. Flux Gem - 60 seconds
-8. Wealth Gem - 60 seconds
+### Primary: Heart Drainer
+- **Activation:** Right-click
+- **Cooldown:** 30 seconds
+- **Range:** 20 blocks (raycast targeting)
+- **Duration:** 20 seconds
+- **Total Damage:** 4.0 HP over full duration
+- **Visual:** Healing particles on target
+- **Effect:** Drains health from target over time
 
-### By Energy Cost (Lowest to Highest)
+### Secondary: Circle of Life (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 60 seconds (1 minute)
+- **Duration:** 10 seconds
+- **Range:** 8 blocks radius (centered on cast location)
+- **Effect:**
+  - Caster in circle: Regeneration 3
+  - Enemies in circle: Wither effect
+- **Visual:**
+  - Heart, sculk soul, and happy villager particles
+  - Visible circle border with 32 point outline
+- **Death Protection:** Effect stops on death
 
-1. Speed Gem - 4%
-2. Puff Gem - 5%
-3. Strength Gem - 7%
-4. Fire Gem - 8%
-5. Astra Gem - 10%
-6. Life Gem - 10%
-7. Flux Gem - 12%
-8. Wealth Gem - 15%
+### Passives
+- **Regeneration**: 0.5 hearts every 5 seconds
+- **Undead Damage**: 3x damage to undead mobs
+- **Saturation**: 2x saturation gain from food
+- **Wither Immunity**: Removes wither effects
 
-### By Use Case
+### Auto-Enchantments (Tier 2)
+None
 
-**Combat:**
-- Primary: Fire, Strength
-- Secondary: Flux, Astra
-- Support: Life
+---
+
+## Puff Gem ☁️
+
+**Theme:** Air manipulation and mobility
+
+### Primary: Dash
+- **Activation:** Right-click
+- **Cooldown:** 5 seconds
+- **Effect:** Quick dash in look direction
+- **Velocity:** 2.0 boost in facing direction
+- **Visual:** Cloud particles
+
+### Secondary: Breezy Bash (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 10 seconds
+- **Effect:** Launch up, then slam down with AoE damage on landing
+- **Visual:** Cloud particles during flight and landing
+
+### Passives
+- **No Fall Damage**: Complete fall damage immunity
+- **Double Jump**: Press space while airborne to jump again
+
+### Auto-Enchantments (Tier 2)
+- **Power V** (bows)
+- **Punch II** (bows)
+- **Feather Falling IV** (boots)
+
+---
+
+## Speed Gem 💨
+
+**Theme:** Enhanced movement and enemy slowing
+
+### Primary: Sloth's Sedative
+- **Activation:** Right-click
+- **Cooldown:** 35 seconds
+- **Range:** 8 block radius
+- **Duration:** Configurable
+- **Effect:** Applies Slowness to nearby enemies
+
+### Secondary: Speed Storm (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 45 seconds
+- **Effect:** Lightning strikes around player with speed boost
+- **Visual:** Thunder particle effects
+
+### Passives
+- **Speed III**: Always active
+- **Dolphin's Grace**: Always active
+- **Soul Sand Immunity**: Move normally on soul sand
+
+### Auto-Enchantments (Tier 2)
+- **Efficiency V** (tools)
+
+---
+
+## Strength Gem 💪
+
+**Theme:** Physical power and critical hits
+
+### Primary: Bloodthorns
+- **Activation:** Right-click
+- **Cooldown:** 20 seconds
+- **Damage:** 5.0 HP base
+- **Range:** AoE around player
+- **Visual:** Crimson particles
+- **Features:**
+  - Can target specific player (Frailer Power on T2)
+  - Respects trusted players
+
+### Secondary: Chad Strength (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 30 seconds
+- **Duration:** Configurable
+- **Effect:** Grants Strength III
+- **Synergy:** Works with critical hit tracking
+
+### Passives
+- **Strength II**: Always active
+- **Critical Hit Tracking**: Every X critical hits = 2x damage attack
+  - Tier 1: Every 8 crits
+  - Tier 2: Every 3 crits
+  - Visual progress feedback with particles/sounds
+  - Massive effects when fully charged
+
+### Auto-Enchantments (Tier 2)
+- **Sharpness V** (swords/axes)
+
+---
+
+## Wealth Gem 💎
+
+**Theme:** Fortune, economy, and utility
+
+### Primary: Durability Chip
+- **Activation:** Right-click
+- **Cooldown:** 30 seconds
+- **Effect:** Deals 2x durability damage to target's armor
+- **Visual:** Particle effects on target
+
+### Secondary: Rich Rush (Tier 2)
+- **Activation:** Shift + Right-click
+- **Cooldown:** 540 seconds (9 minutes)
+- **Duration:** 120 seconds (2 minutes)
+- **Effect:** Doubles mob drops and ore drops
+- **Visual:** Glowstone particles
+
+### Additional Commands
+- `/bliss pockets` - Personal 9-slot inventory
+- `/bliss amplify` - Enhance enchantments for 45 seconds
+
+### Passives
+- **Luck**: Always active
+- **Hero of the Village**: Cheaper villager trades
+- **2x Netherite Scrap**: From furnace smelting
+
+### Auto-Enchantments (Tier 2)
+- **Fortune III** (pickaxe)
+- **Looting III** (sword)
+- **Mending** (all tools)
+
+---
+
+## Ability Mechanics
+
+### Charging Abilities
+Fire Charged Fireball and Flux Beam use a charging system:
+- Right-click to START charging (0% → 100% over 15 seconds)
+- Right-click AGAIN to FIRE at current charge
+- Auto-fires at 100% charge + 1 second grace period
+- Charging CANCELS on death
+- Action bar shows charge percentage
+- Particles increase with charge level
+
+### Targeting System
+Most abilities use raycast targeting:
+- Range: 20-30 blocks depending on ability
+- Targets any `LivingEntity` (mobs + players)
+- Respects friendly fire protection (trusted players)
+- Visual beam/particle effects show targeting
+
+### Trusted Players System
+- Add with `/bliss trust <player>`
+- Remove with `/bliss untrust <player>`
+- View list with `/bliss trustedlist`
+- Prevents damage from:
+  - Flux Beam, Ground
+  - Fire Campfire
+  - Strength Bloodthorns
+  - Other player-targeted abilities
+- Players always trust themselves
+
+### Death Mechanics
+All active abilities and charging states cancel on death:
+- Fire Fireball charging → Cancelled
+- Flux Beam charging → Cancelled
+- Astra Astral Projection → Ended immediately
+- Life Circle of Life → Stopped
+
+---
+
+## Tips & Strategies
+
+### Energy Management
+- Tier 2 abilities cost MORE energy to upgrade
+- Keep energy above 2 to use abilities
+- Keep energy above 1 to keep passives active
+- Kill players for +1 energy
+- Use Repair Kits for group energy restoration
+
+### Cooldown Optimization
+- Fire Fireball (10s) - Spammable damage
+- Puff Dash (5s) - Most frequent mobility
+- Flux Beam (60s) - Save for critical moments
+- Wealth Rich Rush (540s) - Plan mining sessions
+
+### Tier Progression
+- Start with Tier 1 to learn basics
+- Upgrade to Tier 2 with Universal Gem Upgrader
+- Tier 2 benefits:
+  - Secondary ability (usually stronger)
+  - Auto-enchantments (huge value)
+  - Enhanced passive effects (some gems)
+
+### PvP Meta
+**Offensive Combos:**
+- Flux Ground (stun) → Strength Bloodthorns (AoE)
+- Fire Charged Fireball (ranged) → Astra Daggers (finish)
+- Flux Beam (armor break) → Melee rush
+
+**Defensive Options:**
+- Puff Dash (escape)
+- Astra Projection (invulnerable scouting)
+- Life Circle of Life (sustain zone)
 
 **Utility:**
-- Primary: Wealth, Puff
-- Secondary: Speed, Astra
-
-**Mobility:**
-- Primary: Astra, Speed
-- Secondary: Puff
-
-**Survival:**
-- Primary: Life
-- Secondary: Flux, Speed
-
-## Tips & Tricks
-
-### Maximizing Gem Usage
-
-1. **Energy Management**
-   - Monitor energy levels constantly
-   - Repair before dropping below 50%
-   - Keep backup gems for emergencies
-
-2. **Cooldown Optimization**
-   - Rotate between multiple gems
-   - Plan ability usage in advance
-   - Use lower cooldown gems more frequently
-
-3. **Strategic Selection**
-   - Match gems to your playstyle
-   - Consider your current task
-   - Adapt to server meta
-
-4. **Preservation**
-   - Use abilities sparingly
-   - Avoid unnecessary activation
-   - Keep gems in ender chest when not needed
+- Speed gem for chasing/escaping
+- Wealth for gear advantage
+- Strength for burst damage
 
 ::: tip Pro Strategy
-Carry complementary gems in your hotbar. Switch between gems during cooldowns to maintain constant ability access!
+Flux Beam at 100% charge (15 HP armor-piercing) has a 60 second cooldown. Use it to break through armored targets, then follow up with other abilities during cooldown!
 :::
 
-::: warning Energy Management
-Higher-tier gems (PRISTINE+3 and above) have enhanced abilities. Maintain energy above 120% for maximum power!
+::: warning Death Penalty
+Dying costs 1 energy! At energy 1 (RUINED), you lose ALL passive effects. At energy 0 (BROKEN), you can't use abilities at all. Stay alive!
 :::

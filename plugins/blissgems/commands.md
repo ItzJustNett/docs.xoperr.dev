@@ -1,430 +1,501 @@
 ---
 title: Commands Reference
-description: Complete command reference for BlissGems
+description: Complete list of all BlissGems commands and permissions
 ---
 
 # Commands Reference
 
-Complete reference for all BlissGems commands, including usage, permissions, and examples.
+Complete reference for all BlissGems commands, their usage, permissions, and examples.
 
-## Command Overview
+## Main Command
 
-| Command | Description | Permission |
-|---------|-------------|------------|
-| `/blissgems give` | Give a gem to a player | `blissgems.give` |
-| `/blissgems info` | View gem information | `blissgems.use` |
-| `/blissgems repair` | Repair a gem's energy | `blissgems.repair` |
-| `/blissgems list` | List all available gems | `blissgems.list` |
-| `/blissgems reload` | Reload configuration | `blissgems.reload` |
-| `/blissgems energy` | Manage gem energy | `blissgems.admin` |
-| `/blissgems debug` | Debug gem issues | `blissgems.debug` |
+All commands use the base command `/bliss` (or aliases `/gems`, `/bg`)
 
-## Detailed Command Reference
-
-### Give Command
-
-Give gems to players.
-
-**Syntax:**
 ```
-/blissgems give <player> <gem_type> [energy] [amount]
-```
-
-**Parameters:**
-- `<player>` - Target player name (required)
-- `<gem_type>` - Type of gem (required)
-  - Valid types: `astra`, `fire`, `flux`, `life`, `puff`, `speed`, `strength`, `wealth`
-- `[energy]` - Starting energy level, 0-150 (optional, default: 100)
-- `[amount]` - Number of gems to give (optional, default: 1)
-
-**Permission:** `blissgems.give`
-
-**Examples:**
-
-Give a pristine Astra gem:
-```
-/blissgems give Notch astra
-```
-
-Give a Fire gem with 50% energy:
-```
-/blissgems give Notch fire 50
-```
-
-Give 5 Speed gems with maximum energy:
-```
-/blissgems give Notch speed 150 5
-```
-
-Give a broken Wealth gem (for testing):
-```
-/blissgems give Notch wealth 0
-```
-
-**Output:**
-```
-✓ Gave 1x Astra Gem (100% energy) to Notch
+/bliss [subcommand] [arguments]
 ```
 
 ---
 
-### Info Command
+## Admin Commands
 
-Display detailed information about the gem you're holding.
+### Give Gem
+Give a gem to a player.
 
-**Syntax:**
+**Usage:**
 ```
-/blissgems info
-```
-
-**Permission:** `blissgems.use`
-
-**Requirements:**
-- Must be holding a gem in main hand
-
-**Examples:**
-
-View gem information:
-```
-/blissgems info
+/bliss give <player> <gem_type> [tier]
 ```
 
-**Output:**
-```
-=== Gem Information ===
-Type: Astra Gem
-Energy: 85% (GOOD)
-State: Active
-Cooldown: 12 seconds remaining
-Ability: Teleportation
-Uses: 23
-```
-
----
-
-### Repair Command
-
-Repair a gem's energy level.
-
-**Syntax:**
-```
-/blissgems repair [player] [amount]
-```
-
-**Parameters:**
-- `[player]` - Target player (optional, default: self)
-- `[amount]` - Energy to restore, 1-150 (optional, default: 100)
-
-**Permission:** `blissgems.repair` (self), `blissgems.repair.others` (other players)
-
-**Requirements:**
-- Target must be holding a gem
-
-**Examples:**
-
-Repair your own gem to 100%:
-```
-/blissgems repair
-```
-
-Repair another player's gem:
-```
-/blissgems repair Notch
-```
-
-Fully restore a gem to PRISTINE+5:
-```
-/blissgems repair Notch 150
-```
-
-Partially repair to 50%:
-```
-/blissgems repair Notch 50
-```
-
-**Output:**
-```
-✓ Gem repaired to 100% energy (PRISTINE state)
-```
-
----
-
-### List Command
-
-Display all available gem types.
-
-**Syntax:**
-```
-/blissgems list
-```
-
-**Permission:** `blissgems.list`
-
-**Examples:**
-
-List all gems:
-```
-/blissgems list
-```
-
-**Output:**
-```
-=== Available Gems ===
-1. Astra Gem - Teleportation abilities
-2. Fire Gem - Fire-based attacks
-3. Flux Gem - Time manipulation
-4. Life Gem - Healing powers
-5. Puff Gem - Cloud abilities
-6. Speed Gem - Movement enhancement
-7. Strength Gem - Combat boost
-8. Wealth Gem - Fortune effects
-```
-
----
-
-### Reload Command
-
-Reload plugin configuration without restarting.
-
-**Syntax:**
-```
-/blissgems reload [config|gems|all]
-```
-
-**Parameters:**
-- `[config]` - Reload only config.yml (optional)
-- `[gems]` - Reload only gems.yml (optional)
-- `[all]` - Reload everything (default)
-
-**Permission:** `blissgems.reload`
-
-**Examples:**
-
-Reload all configuration:
-```
-/blissgems reload
-```
-
-Reload only main config:
-```
-/blissgems reload config
-```
-
-Reload gem definitions:
-```
-/blissgems reload gems
-```
-
-**Output:**
-```
-✓ Configuration reloaded successfully
-✓ Loaded 8 gem types
-✓ Applied new settings
-```
-
----
-
-### Energy Command
-
-Manage gem energy levels (admin command).
-
-**Syntax:**
-```
-/blissgems energy <player> <set|add|remove> <amount>
-```
-
-**Parameters:**
-- `<player>` - Target player name (required)
-- `<action>` - Action to perform (required)
-  - `set` - Set energy to specific value
-  - `add` - Add energy
-  - `remove` - Remove energy
-- `<amount>` - Energy amount, 0-150 (required)
+**Arguments:**
+- `<player>` - Target player name
+- `<gem_type>` - Gem type: `astra`, `fire`, `flux`, `life`, `puff`, `speed`, `strength`, `wealth`
+- `[tier]` - Optional tier (1 or 2), defaults to 1
 
 **Permission:** `blissgems.admin`
 
+**Examples:**
+```
+/bliss give Magicc fire 1
+/bliss give Steve astra 2
+/bliss give Notch flux
+```
+
+---
+
+### Manage Energy
+Manage a player's energy level.
+
+**Set Energy:**
+```
+/bliss energy <player> set <amount>
+```
+
+**Add Energy:**
+```
+/bliss energy <player> add <amount>
+```
+
+**Remove Energy:**
+```
+/bliss energy <player> remove <amount>
+```
+
+**Arguments:**
+- `<player>` - Target player name
+- `<amount>` - Energy amount (0-10)
+
+**Permission:** `blissgems.admin`
+
+**Examples:**
+```
+/bliss energy Magicc set 10
+/bliss energy Steve add 5
+/bliss energy Notch remove 2
+```
+
+**Notes:**
+- Energy is clamped between 0 and 10
+- Setting energy to 0 makes gem BROKEN (no abilities/passives)
+- Setting energy to 1 makes gem RUINED (no passives)
+
+---
+
+### Reload Configuration
+Reload the plugin configuration.
+
+**Usage:**
+```
+/bliss reload
+```
+
+**Permission:** `blissgems.admin`
+
+**Effect:**
+- Reloads `config.yml`
+- Applies new cooldowns, damage values, messages
+- Does NOT reload player data
+- Does NOT require server restart
+
+---
+
+## Player Commands
+
+### Withdraw Energy
+Extract 1 energy from your gem into an Energy Bottle item.
+
+**Usage:**
+```
+/bliss withdraw
+```
+
+**Permission:** `blissgems.use` (default: true)
+
 **Requirements:**
-- Target must be holding a gem
+- Must have a gem equipped
+- Gem must have energy > 1 (cannot withdraw from RUINED or BROKEN)
+- Inventory must have space for the bottle
 
-**Examples:**
-
-Set gem energy to 100%:
-```
-/blissgems energy Notch set 100
-```
-
-Add 25% energy:
-```
-/blissgems energy Notch add 25
-```
-
-Remove 50% energy:
-```
-/blissgems energy Notch remove 50
-```
-
-Set to PRISTINE+5 state:
-```
-/blissgems energy Notch set 150
-```
-
-Set to BROKEN state:
-```
-/blissgems energy Notch set 0
-```
-
-**Output:**
-```
-✓ Set Notch's gem energy to 100%
-✓ Current state: PRISTINE
-```
+**Effect:**
+- Removes 1 energy from gem
+- Gives 1 Energy Bottle item
+- Energy Bottle can be consumed to restore 1 energy
 
 ---
 
-### Debug Command
+### Gem Info
+Display information about your current gem.
 
-Debug gem-related issues.
-
-**Syntax:**
+**Usage:**
 ```
-/blissgems debug [player]
-```
-
-**Parameters:**
-- `[player]` - Target player (optional, default: self)
-
-**Permission:** `blissgems.debug`
-
-**Examples:**
-
-Debug your own gem:
-```
-/blissgems debug
+/bliss info
 ```
 
-Debug another player's gem:
-```
-/blissgems debug Notch
-```
+**Permission:** `blissgems.use` (default: true)
 
 **Output:**
 ```
-=== Debug Information ===
-Player: Notch
-Holding Gem: Yes
-Gem Type: astra_gem
-NBT Data Present: Yes
-Energy Value: 85
-State: GOOD
-Permission Check: ✓ blissgems.use.astra
-Cooldown Active: Yes (12s remaining)
-Oraxen Integration: ✓ Working
-Last Error: None
+Gem: FIRE (Tier 2) | Energy: 7/10 | State: Pristine +2
 ```
+
+Shows:
+- Gem type and tier
+- Current energy level
+- Energy state name
 
 ---
 
-## Permission Nodes
+### Activate Abilities (Manual)
+Manually activate gem abilities (alternative to right-click).
 
-### User Permissions
-
-```yaml
-blissgems.use                # Basic gem usage
-blissgems.use.astra         # Use Astra gem
-blissgems.use.fire          # Use Fire gem
-blissgems.use.flux          # Use Flux gem
-blissgems.use.life          # Use Life gem
-blissgems.use.puff          # Use Puff gem
-blissgems.use.speed         # Use Speed gem
-blissgems.use.strength      # Use Strength gem
-blissgems.use.wealth        # Use Wealth gem
-blissgems.info              # View gem info
-blissgems.list              # List available gems
-blissgems.repair            # Repair own gems
+**Primary Ability:**
 ```
+/bliss ability:main
+```
+
+**Secondary Ability (Tier 2 only):**
+```
+/bliss ability:secondary
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Requirements:**
+- Must be holding a gem in main hand or offhand
+- Gem must have sufficient energy
+- Ability must be off cooldown
+
+**Use Cases:**
+- When click activation is disabled (`/bliss clickactivation`)
+- For keybind macros
+- For precise ability timing
+
+---
+
+### Click Activation Toggle
+Toggle whether right-clicking activates abilities.
+
+**Usage:**
+```
+/bliss clickactivation
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Effect:**
+- Toggles on/off for the player
+- When OFF: Must use `/bliss ability:main` or `/bliss ability:secondary`
+- When ON: Right-click activates abilities (default)
+- Setting persists through logout
+
+**Use Cases:**
+- Prevent accidental ability activation
+- Custom keybind setups
+- Building/interactions without triggering abilities
+
+---
+
+## Wealth Gem Commands
+
+These commands only work when holding a Wealth gem.
+
+### Personal Pockets
+Open your personal 9-slot storage inventory.
+
+**Usage:**
+```
+/bliss pockets
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Requirements:**
+- Must be holding Wealth gem (any tier)
+- No cooldown
+
+**Features:**
+- Personal 9-slot inventory
+- Items persist through logout
+- Cannot be accessed by other players
+- Independent from ender chest
+
+---
+
+### Amplify Enchantments
+Temporarily enhance all enchantments on held items.
+
+**Usage:**
+```
+/bliss amplify
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Requirements:**
+- Must be holding Wealth gem (Tier 2)
+- Cooldown: 180 seconds (3 minutes)
+
+**Effect:**
+- Duration: 45 seconds
+- Enhances enchantments beyond normal limits
+- Sharpness V → Sharpness VII
+- Fortune III → Fortune V
+- Etc.
+
+**Visual:** Enchant glint particles
+
+---
+
+## Trusted Players System
+
+### Trust a Player
+Add a player to your trusted list (prevents damage from your abilities).
+
+**Usage:**
+```
+/bliss trust <player>
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Effect:**
+- Your gem abilities will not damage this player
+- Flux Beam restores armor instead of damaging
+- Fire Campfire won't burn them
+- Strength Bloodthorns skips them
+- Ground stun won't affect them
+
+**Notes:**
+- You automatically trust yourself
+- Trusted list persists through logout
+- No limit on trusted players
+
+---
+
+### Untrust a Player
+Remove a player from your trusted list.
+
+**Usage:**
+```
+/bliss untrust <player>
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Effect:**
+- Your gem abilities will now affect this player
+- Removes them from your trusted list
+
+---
+
+### View Trusted Players
+See your list of trusted players.
+
+**Usage:**
+```
+/bliss trustedlist
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Output:**
+```
+Trusted Players:
+- Steve
+- Alex
+- Notch
+```
+
+Shows all players you've trusted.
+
+---
+
+## Permissions
 
 ### Admin Permissions
 
-```yaml
-blissgems.admin             # Full admin access
-blissgems.give              # Give gems to players
-blissgems.reload            # Reload configuration
-blissgems.energy            # Modify gem energy
-blissgems.repair.others     # Repair other players' gems
-blissgems.debug             # Access debug command
-blissgems.*                 # Wildcard (all permissions)
-```
+**`blissgems.admin`**
+- Grants access to ALL admin commands
+- `/bliss give`
+- `/bliss energy`
+- `/bliss reload`
+- Default: op only
+
+### Player Permissions
+
+**`blissgems.use`**
+- Grants access to ALL player commands
+- Use gem abilities
+- `/bliss info`
+- `/bliss withdraw`
+- `/bliss ability:main` and `/bliss ability:secondary`
+- `/bliss trust`, `/bliss untrust`, `/bliss trustedlist`
+- `/bliss clickactivation`
+- `/bliss pockets` (Wealth gem)
+- `/bliss amplify` (Wealth gem)
+- Default: true (all players)
+
+---
 
 ## Command Aliases
 
-Some commands have shorter aliases for convenience:
+The main command has multiple aliases:
 
-| Command | Aliases |
-|---------|---------|
-| `/blissgems` | `/bg`, `/gems` |
-| `/blissgems give` | `/bg give`, `/gems give` |
-| `/blissgems info` | `/bg info`, `/geminfo` |
-| `/blissgems repair` | `/bg repair`, `/gemrepair` |
-
-**Example:**
 ```
-/bg give Notch astra
-/geminfo
-/gemrepair
+/bliss    (primary)
+/gems     (alias)
+/bg       (alias)
 ```
 
-## Common Usage Examples
-
-### Server Setup
-
-Give VIP players starter gems:
-```bash
-/blissgems give Steve speed 100 1
-/blissgems give Steve life 100 1
+All work identically:
+```
+/bliss give Magicc fire 1
+/gems give Magicc fire 1
+/bg give Magicc fire 1
 ```
 
-### Event Rewards
-
-Reward players with powered-up gems:
-```bash
-/blissgems give Alex astra 150 1
-/blissgems give Alex strength 150 1
-```
-
-### Testing
-
-Create test scenarios:
-```bash
-# Test broken gem
-/blissgems give TestPlayer fire 0
-
-# Test pristine gem
-/blissgems give TestPlayer fire 150
-
-# Test normal gem
-/blissgems give TestPlayer fire 100
-```
-
-### Maintenance
-
-Repair all online players' gems (requires scripting or command blocks):
-```bash
-/execute as @a run blissgems repair @s 100
-```
+---
 
 ## Tab Completion
 
 All commands support tab completion:
 
-- Type `/blissgems ` and press TAB to see available subcommands
-- Type `/blissgems give ` and press TAB to see online players
-- Type `/blissgems give Notch ` and press TAB to see gem types
-- Supports completion for all parameters
+```
+/bliss <TAB>
+  give, energy, reload, withdraw, info, ability:main, ability:secondary,
+  trust, untrust, trustedlist, clickactivation, pockets, amplify
 
-::: tip Quick Reference
-Bookmark this page for quick access to command syntax. Use `/blissgems` without arguments to see in-game help.
+/bliss give <TAB>
+  <player names>
+
+/bliss give Magicc <TAB>
+  astra, fire, flux, life, puff, speed, strength, wealth
+
+/bliss give Magicc fire <TAB>
+  1, 2
+
+/bliss trust <TAB>
+  <online player names>
+```
+
+---
+
+## Usage Examples
+
+### Setting Up a New Player
+
+```bash
+# Give starting gem (Tier 1)
+/bliss give NewPlayer fire 1
+
+# Set to starting energy (5 is default)
+/bliss energy NewPlayer set 5
+
+# Check their gem info
+/bliss info
+```
+
+### Upgrading a Player
+
+```bash
+# Give Tier 2 gem (or use Universal Gem Upgrader item)
+/bliss give ExistingPlayer fire 2
+
+# Restore full energy
+/bliss energy ExistingPlayer set 10
+```
+
+### Energy Management
+
+```bash
+# Reward player with energy
+/bliss energy TopPlayer add 3
+
+# Penalize player
+/bliss energy RuleBreaker remove 5
+
+# Reset to PRISTINE state
+/bliss energy Player set 5
+```
+
+### Trusted Players Setup
+
+```bash
+# As a player, trust your team
+/bliss trust Alice
+/bliss trust Bob
+/bliss trust Charlie
+
+# View your list
+/bliss trustedlist
+
+# Remove someone
+/bliss untrust Bob
+```
+
+### Manual Ability Activation
+
+```bash
+# Disable click activation
+/bliss clickactivation
+
+# Use abilities via commands
+/bliss ability:main
+/bliss ability:secondary
+
+# Re-enable click activation
+/bliss clickactivation
+```
+
+---
+
+## Error Messages
+
+Common error messages and their meanings:
+
+**"You don't have permission to use this command!"**
+- Missing required permission (`blissgems.admin` or `blissgems.use`)
+
+**"Player not found!"**
+- Target player is offline or doesn't exist
+
+**"Invalid gem type!"**
+- Gem type not recognized (use: astra, fire, flux, life, puff, speed, strength, wealth)
+
+**"Invalid tier! Use 1 or 2."**
+- Tier must be 1 or 2
+
+**"You don't have a gem equipped!"**
+- Command requires holding a gem
+
+**"Not enough energy to withdraw!"**
+- Gem must have energy > 1 to withdraw
+
+**"You already have a gem! You can only have one gem at a time."**
+- Cannot pick up more than one gem
+
+**"Click activation is disabled! Use /bliss ability:main or /bliss ability:secondary to activate abilities."**
+- Right-click doesn't work, use commands instead
+
+---
+
+## Command Tips
+
+::: tip Bulk Operations
+Use commands with plugins like DeluxeMenus or CommandPanels to create GUI interfaces for gem management!
 :::
 
-::: warning Admin Commands
-Commands like `/blissgems energy` and `/blissgems give` are powerful. Use appropriate permissions to prevent abuse!
+::: tip Keybinds
+Players can bind `/bliss ability:main` and `/bliss ability:secondary` to keys using client mods for faster ability activation.
+:::
+
+::: tip Permission Groups
+Create permission groups for different gem access levels:
+- VIP: Access to specific gem types
+- Premium: Access to Tier 2 gems
+- Admin: Full gem management
+:::
+
+::: warning Admin Safety
+Be careful with `/bliss energy set 0` - this makes gems completely unusable until energy is restored!
 :::
