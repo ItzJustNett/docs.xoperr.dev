@@ -145,3 +145,4 @@ Looking for stasis chamber designs? Check out the usage guide for tested layouts
 ::: warning Anti-Cheat Configuration
 If using anti-cheat plugins, configure them to allow ender pearl teleportation or BetterStasis may be blocked!
 :::
+Hey I was reading this
