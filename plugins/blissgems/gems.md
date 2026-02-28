@@ -11,14 +11,14 @@ BlissGems features 8 unique gem types, each with distinct abilities, passives, a
 
 | Gem | Primary Ability | Secondary (T2) | Cooldown | Best For |
 |-----|----------------|----------------|----------|----------|
-| Astra | Astral Daggers | Astral Projection | 15s / 120s | Mobility, PvP |
-| Fire | Charged Fireball | Cozy Campfire | 10s / 60s | DPS, Area Control |
-| Flux | Flux Beam | Ground | 60s / 20s | Armor-Piercing, CC |
-| Life | Heart Drainer | Circle of Life | 30s / 60s | Sustain, Support |
-| Puff | Dash | Breezy Bash | 5s / 10s | Mobility, Escape |
-| Speed | Sloth's Sedative | Speed Storm | 35s / 45s | CC, Speed |
-| Strength | Bloodthorns | Chad Strength | 20s / 30s | Melee DPS |
-| Wealth | Durability Chip | Rich Rush | 30s / 540s | Utility, Economy |
+| Astra | Astral Daggers | Astral Projection | 15s / 60s | Mobility, PvP, Soul Capture |
+| Fire | Charged Fireball | Cozy Campfire | 10s / 60s | DPS, Area Control, Terrain |
+| Flux | Flux Beam | Ground | 60s / 20s | Armor-Piercing, CC, Support |
+| Life | Heart Drainer | Circle of Life | 30s / 60s | Sustain, Support, Healing |
+| Puff | Dash | Breezy Bash | 5s / 10s | Mobility, Escape, Jumping |
+| Speed | Sloth's Sedative | Speed Storm | 35s / 45s | CC, Speed, Debuff |
+| Strength | Bloodthorns | Frailer Power | 20s / 25s | Melee DPS, Debuff |
+| Wealth | Durability Chip | Rich Rush | 30s / 540s | Utility, Economy, Mining |
 
 ---
 
@@ -29,30 +29,38 @@ BlissGems features 8 unique gem types, each with distinct abilities, passives, a
 ### Primary: Astral Daggers
 - **Activation:** Right-click
 - **Cooldown:** 15 seconds
-- **Damage:** 4.0 HP (2 hearts) per dagger
-- **Effect:** Shoots 3 homing projectiles at nearest enemy within 30 blocks
-- **Visual:** Purple particle trails
-- **Target:** Nearest hostile mob or player
+- **Damage:** 4.0 HP per dagger
+- **Effect:** Fire 3 phantom purple daggers spread 15 degrees apart, travel 15 blocks
+- **Visual:** Massive purple burst on hit
+- **Features:** Available at T1+T2
 
 ### Secondary: Astral Projection (Tier 2)
 - **Activation:** Shift + Right-click
-- **Cooldown:** 120 seconds (2 minutes)
-- **Duration:** 10 seconds
-- **Range:** 150 block radius from origin
-- **Effect:** Enter spectator mode and explore
-- **Features:**
-  - Forced return on boundary or timeout
-  - Cooldown only starts when projection ends
-  - Can be ended early by using ability again
-  - Returns to origin location
-  - Death cancels projection immediately
+- **Cooldown:** 60 seconds
+- **Duration:** 5 seconds spectator mode
+- **Effect:** Enter spectator mode, ghost trail at origin, stay where you end up
+- **Sub-abilities during Projection:**
+  - **Tag** (Right-click): Mark a player for 30s with directional arrow + distance tracker
+  - **Spook** (Shift+Right-click): Blindness + Nausea to enemies in 8-block radius for 3s
+
+### Tertiary: Dimensional Drift (Tier 2)
+- **Activation:** `/bliss ability:tertiary`
+- **Cooldown:** 90 seconds
+- **Duration:** 15 seconds
+- **Effect:** Invisible horse mount + player invisibility with subtle purple particle trail
+- **Features:** Toggle off early
+
+### Quaternary: Dimensional Void (Tier 2)
+- **Activation:** `/bliss ability:quaternary`
+- **Cooldown:** 120 seconds
+- **Duration:** 8 seconds
+- **Effect:** Nullify ALL enemy gem abilities in 10-block radius
+- **Visual:** Purple dome visual, Mining Fatigue + Weakness applied to enemies inside
 
 ### Passives
-- **Phasing** (15% chance): Avoid incoming attacks
-- **Soul Absorption**:
-  - Mob kill: Heal 2.5 hearts (5.0 HP)
-  - Player kill: Heal 5 hearts (10.0 HP)
-- **Soul Capture**: Store up to 2 mobs in gem, release in LIFO order (cannot capture bosses)
+- **Phase**: 10-15% chance to negate incoming damage
+- **Soul Healing**: Heal 2.5 hearts (mob kill) or 5 hearts (player kill)
+- **Soul Capture**: Sneak + Hit a mob to capture (max 2). `/bliss release` to release, `/bliss souls` to view
 
 ### Auto-Enchantments (Tier 2)
 None
@@ -78,21 +86,31 @@ None
 
 ### Secondary: Cozy Campfire (Tier 2)
 - **Activation:** Shift + Right-click
-- **Cooldown:** 60 seconds (1 minute)
-- **Duration:** 15 seconds (config: `fire-campfire`)
-- **Range:** 4 block radius
-- **Effect:** Places campfire that heals caster, burns enemies
-- **Healing:** 0.4 HP + 1 food per second (configurable)
-- **Damage:** 2.0 HP per second to enemies
-- **Burn Duration:** 3 seconds
+- **Cooldown:** 60 seconds
+- **Duration:** 15 seconds
+- **Range:** 5-block radius
+- **Effect:** Place campfire that heals allies (Regen IV) and burns enemies (2 HP/s + fire)
 - **Visual:** Dense flame ring showing radius boundary
 - **Features:**
   - Respects trusted players (no damage)
   - Auto-removes when broken or expired
-  - Regeneration 2 for caster in range
+
+### Tertiary: Crisp (Tier 2)
+- **Activation:** `/bliss ability:tertiary`
+- **Cooldown:** 90 seconds
+- **Duration:** 15 seconds
+- **Effect:** Evaporate all water and replace terrain with nether blocks in 10-block radius
+- **Features:** Keeps evaporating newly placed water
+
+### Quaternary: Meteor Shower (Tier 2)
+- **Activation:** `/bliss ability:quaternary`
+- **Cooldown:** 120 seconds
+- **Duration:** 8 seconds rain
+- **Effect:** Rain meteors on target area (8-block AoE), each meteor deals 5 HP and sets enemies on fire
+- **Range:** 50 blocks (where you're looking)
 
 ### Passives
-- **Fire Resistance**: Always active
+- **Fire Resistance**: Always active while holding gem
 - **Auto-Smelt**: Ores smelt automatically when mined
 
 ### Auto-Enchantments (Tier 2)
@@ -106,47 +124,29 @@ None
 **Theme:** Electric power, armor-piercing, and disruption
 
 ### Primary: Flux Beam
-- **Activation:** Right-click to start charging, right-click again to fire
-- **Charge Time:** 15 seconds for full charge
-- **Cooldown:** 60 seconds (1 minute) - Very powerful!
+- **Activation:** Right-click to charge, right-click again to fire
+- **Charge Time:** 15 seconds max charge
+- **Cooldown:** 60 seconds - Very powerful!
 - **Range:** 30 blocks (raycast targeting)
-- **Damage:**
-  - Base: 5.0 HP (2.5 hearts) uncharged
-  - Max: 15.0 HP (7.5 hearts) at 100% charge
-  - **Bypasses armor** using direct health manipulation
-- **Armor Damage:** Up to 150 durability at 100% charge
+- **Damage:** 5 HP base x charge multiplier, up to 150 armor durability damage at 100%
 - **Visual:** Electric spark and end rod beam particles
-- **Trusted Players:** Restores armor instead of damaging
+- **Trusted Players:** Repairs armor instead of damaging
 - **Death Protection:** Charging cancels on death
 
 ### Secondary: Ground (Tier 2)
 - **Activation:** Shift + Right-click
 - **Cooldown:** 20 seconds
-- **Range:** 20 blocks (raycast targeting)
-- **Duration:** 3 seconds (config: `flux-ground-freeze`)
-- **Targets:** ALL living entities (mobs and players)
-- **Effect:** Freezes target in place
-- **Status Effects:**
-  - Slowness 255 (horizontal freeze)
-  - Slow Falling (prevents jumping/falling)
-  - Mining Fatigue 255
-  - Weakness 255
+- **Range:** 15 blocks (raycast targeting)
+- **Duration:** 3-5 seconds stun
+- **Effect:** Stun target (Slowness 255 + Mining Fatigue 255 + Weakness 255) - completely freezes them
 - **Visual:** Electric spark circle, enchanted hit particles
 - **Features:**
   - Respects trusted players
-  - Adds to stunned players list (tracked for StunListener)
-  - Works on bosses and all mob types
+  - Works on all living entities and bosses
 
 ### Passives
-- **Shocking Arrows**: Electric damage on arrow hits (3.0 HP, 8s cooldown using millisecond tracking)
-- **Flow State**: Repeated actions increase speed/haste
-  - 5 action types: Block Break, Arrow Shoot, Attack, Sprint, Jump
-  - Repeating same action within 3 seconds builds flow level (1-5)
-  - Level 1-2: Speed I
-  - Level 3-4: Speed II + Haste I
-  - Level 5: Speed III + Haste II (MAX FLOW STATE)
-  - Resets on timeout or action change
-- **Tireless**: Removes Weakness, Slowness, Hunger effects
+- **Flow Cleanse**: Removes Weakness, Slowness, Hunger effects every tick
+- **Shocking Arrows**: Arrows deal 2-3 HP electric damage on hit (8s cooldown between shocks)
 
 ### Auto-Enchantments (Tier 2)
 None
@@ -160,30 +160,26 @@ None
 ### Primary: Heart Drainer
 - **Activation:** Right-click
 - **Cooldown:** 30 seconds
-- **Range:** 20 blocks (raycast targeting)
+- **Range:** 15 blocks (raycast targeting)
 - **Duration:** 20 seconds
-- **Total Damage:** 4.0 HP over full duration
-- **Visual:** Healing particles on target
-- **Effect:** Drains health from target over time
+- **Effect:** Apply Wither II to target entity for 20s
+- **Visual:** Pink particles + sculk soul effects
 
 ### Secondary: Circle of Life (Tier 2)
 - **Activation:** Shift + Right-click
-- **Cooldown:** 60 seconds (1 minute)
+- **Cooldown:** 60 seconds
 - **Duration:** 10 seconds
 - **Range:** 8 blocks radius (centered on cast location)
 - **Effect:**
-  - Caster in circle: Regeneration 3
-  - Enemies in circle: Wither effect
-- **Visual:**
-  - Heart, sculk soul, and happy villager particles
-  - Visible circle border with 32 point outline
-- **Death Protection:** Effect stops on death
+  - You in circle: Regen III
+  - Enemies in circle: Wither II
+- **Visual:** Pink circle border with hearts
 
 ### Passives
-- **Regeneration**: 0.5 hearts every 5 seconds
-- **Undead Damage**: 3x damage to undead mobs
-- **Saturation**: 2x saturation gain from food
-- **Wither Immunity**: Removes wither effects
+- **Passive Healing**: Regen 0.3 hearts (T1) / 0.5 hearts (T2) every tick. Removes Wither
+- **Undead Damage**: 2x (T1) / 3x (T2) damage to undead mobs
+- **Saturation Boost**: 1.5x (T1) / 2x (T2) saturation from eating
+- **Golden Apple Bonus**: Extra Absorption I (T1) / Absorption II (T2) on golden apple eat
 
 ### Auto-Enchantments (Tier 2)
 None
@@ -204,12 +200,15 @@ None
 ### Secondary: Breezy Bash (Tier 2)
 - **Activation:** Shift + Right-click
 - **Cooldown:** 10 seconds
-- **Effect:** Launch up, then slam down with AoE damage on landing
-- **Visual:** Cloud particles during flight and landing
+- **Duration:** 10s fall damage immunity
+- **Effect:** Launch straight up (Y = 2.0), grants fall damage immunity
+- **Visual:** Cloud burst particles
 
 ### Passives
-- **No Fall Damage**: Complete fall damage immunity
-- **Double Jump**: Press space while airborne to jump again
+- **Fall Damage Immunity**: No fall damage ever
+- **Double Jump**: Sneak mid-air to double jump (0.6 T1 / 0.8 T2 velocity)
+- **Launch on Hit**: Hitting player with mainhand Puff gem launches them up, slams down 3s later
+- **Sculk Immunity** (T2): Sculk Shriekers/Sensors don't trigger
 
 ### Auto-Enchantments (Tier 2)
 - **Power V** (bows)
@@ -225,20 +224,26 @@ None
 ### Primary: Sloth's Sedative
 - **Activation:** Right-click
 - **Cooldown:** 35 seconds
-- **Range:** 8 block radius
-- **Duration:** Configurable
-- **Effect:** Applies Slowness to nearby enemies
+- **Range:** 10-block radius
+- **Duration:** 10 seconds
+- **Effect:** AoE debuff (Slowness IV + Mining Fatigue III) to all enemies
+- **Visual:** Electric spark and yellow dust effects
 
 ### Secondary: Speed Storm (Tier 2)
 - **Activation:** Shift + Right-click
 - **Cooldown:** 45 seconds
-- **Effect:** Lightning strikes around player with speed boost
-- **Visual:** Thunder particle effects
+- **Duration:** 10 seconds
+- **Effect:** Gain Speed VI with electric spark effects
+
+### Tertiary: Adrenaline Rush (Tier 2)
+- **Activation:** Right-click (without shifting)
+- **Cooldown:** 90 seconds
+- **Duration:** 6 seconds combat mode
+- **Effect:** Speed scales with energy (1-10 = Speed I-X), removes weapon attack cooldown
+- **Visual:** Electric effects
 
 ### Passives
-- **Speed III**: Always active
-- **Dolphin's Grace**: Always active
-- **Soul Sand Immunity**: Move normally on soul sand
+- **Speed**: Speed I (T1) / Speed II (T2) + Dolphin's Grace
 
 ### Auto-Enchantments (Tier 2)
 - **Efficiency V** (tools)
@@ -252,22 +257,29 @@ None
 ### Primary: Bloodthorns
 - **Activation:** Right-click
 - **Cooldown:** 20 seconds
-- **Damage:** 5.0 HP base
-- **Range:** AoE around player
+- **Damage:** 5.0 HP base (scales with your health %)
+- **Range:** 5-block AoE radius
+- **Effect:** AoE damage, more damage when at higher health
 - **Visual:** Crimson particles
-- **Features:**
-  - Can target specific player (Frailer Power on T2)
-  - Respects trusted players
+- **Features:** Respects trusted players
 
-### Secondary: Chad Strength (Tier 2)
+### Secondary: Frailer Power (Tier 2)
+- **Activation:** Right-click (aiming at target)
+- **Cooldown:** 25 seconds
+- **Range:** 15 blocks (raycast targeting)
+- **Duration:** Weakness III for 10s + Wither II for 5s
+- **Effect:** Target player debuff
+- **Visual:** Purple particles
+
+### Tertiary: Chad Strength (Tier 2)
 - **Activation:** Shift + Right-click
 - **Cooldown:** 30 seconds
-- **Duration:** Configurable
-- **Effect:** Grants Strength III
+- **Duration:** 10 seconds
+- **Effect:** Grants Strength II + Resistance II
 - **Synergy:** Works with critical hit tracking
 
 ### Passives
-- **Strength II**: Always active
+- **Strength**: Strength I (T1) / Strength II (T2)
 - **Critical Hit Tracking**: Every X critical hits = 2x damage attack
   - Tier 1: Every 8 crits
   - Tier 2: Every 3 crits
@@ -284,26 +296,27 @@ None
 **Theme:** Fortune, economy, and utility
 
 ### Primary: Durability Chip
-- **Activation:** Right-click
+- **Activation:** Right-click (no target)
 - **Cooldown:** 30 seconds
-- **Effect:** Deals 2x durability damage to target's armor
-- **Visual:** Particle effects on target
+- **Effect:** Toggle 2x durability damage on tools
+- **Visual:** Particle effects
 
 ### Secondary: Rich Rush (Tier 2)
 - **Activation:** Shift + Right-click
 - **Cooldown:** 540 seconds (9 minutes)
-- **Duration:** 120 seconds (2 minutes)
-- **Effect:** Doubles mob drops and ore drops
+- **Duration:** 2 minutes
+- **Effect:** Haste III + Luck IV for mining/farming
 - **Visual:** Glowstone particles
 
-### Additional Commands
-- `/bliss pockets` - Personal 9-slot inventory
-- `/bliss amplify` - Enhance enchantments for 45 seconds
+### Additional Commands (Tier 2)
+- `/bliss pockets` - Open 9-slot personal inventory
+- `/bliss amplify` - Amplify all active potion effects by +1 level (max 5), 180s cooldown
+- `/bliss autosmelt` - Toggle ore auto-smelting on/off
 
 ### Passives
-- **Luck**: Always active
-- **Hero of the Village**: Cheaper villager trades
-- **2x Netherite Scrap**: From furnace smelting
+- **Luck**: Luck I (T1) / Luck II (T2)
+- **Hero of the Village**: Permanent Hero of the Village effect
+- **Unfortunate** (T1+T2): Apply Unluck III to target player for 40s (40s cooldown)
 
 ### Auto-Enchantments (Tier 2)
 - **Fortune III** (pickaxe)

@@ -15,14 +15,14 @@ BlissGems adds 8 unique gem types to your server, each with special abilities th
 
 ### 🎨 Eight Unique Gems
 Each gem type offers distinct abilities with tier progression:
-- **Astra** - Astral daggers, projection, soul absorption, and phasing
-- **Fire** - Charged fireballs, healing campfires, and auto-smelting
-- **Flux** - Ground stun, armor-piercing laser, flow state, and shocking arrows
-- **Life** - Health draining, circle of life, regeneration, and undead damage
-- **Puff** - Dash, breezy bash, double jump, and fall immunity
-- **Speed** - Sloth's sedative, speed storm, and soul sand immunity
-- **Strength** - Bloodthorns, chad strength, and critical hit tracking
-- **Wealth** - Durability chip, rich rush, pockets, amplify, and fortune
+- **Astra** - Astral daggers, projection, phasing, soul system, dimension powers
+- **Fire** - Charged fireballs, healing campfires, nether terrain control, meteor showers
+- **Flux** - Armor-piercing beam, ground stun, flow state, shocking arrows
+- **Life** - Health draining, circle of life, regeneration, undead damage boost
+- **Puff** - Dash, breezy bash, double jump, fall immunity, sculk immunity
+- **Speed** - Sloth's sedative, speed storm, adrenaline rush, speed passives
+- **Strength** - Bloodthorns, frailer power, chad strength, critical hit tracking
+- **Wealth** - Durability chip, rich rush, pockets, amplify, auto-smelt, fortune
 
 ### ⚡ Energy System (0-10)
 Gems use an energy-based system with 11 distinct states:
@@ -110,7 +110,7 @@ BlissGems is perfect for:
 ## Requirements
 
 - **Minecraft Version:** 1.21+
-- **Server Software:** Paper or Purpur (1.21.10+)
+- **Server Software:** Paper or Purpur (1.21+)
 - **Java Version:** 17 or higher
 - **Dependencies:** None required (Oraxen optional for enhanced visuals, PlaceholderAPI optional)
 

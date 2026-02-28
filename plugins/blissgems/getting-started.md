@@ -11,25 +11,17 @@ This guide will walk you through installing, configuring, and using BlissGems on
 
 Before installing BlissGems, ensure you have:
 
-- A Paper, Purpur, or Spigot server running Minecraft 1.20+
+- A Paper, Purpur, or Spigot server running Minecraft 1.21+
 - Java 17 or higher installed
-- Oraxen plugin installed and configured
 - Server operator permissions or file access
+- Optional: Oraxen plugin for custom item visuals (has built-in fallback)
 
 ## Installation
 
-### Step 1: Install Dependencies
+### Step 1: Install BlissGems
 
-BlissGems requires Oraxen to function properly.
-
-1. Download Oraxen from SpigotMC or Polymart
-2. Place `Oraxen.jar` in your `plugins/` folder
-3. Restart your server to generate Oraxen configuration files
-
-### Step 2: Install BlissGems
-
-1. Download the latest BlissGems release
-2. Place `BlissGems.jar` in your server's `plugins/` folder
+1. Download the latest BlissGems release (v4.1+)
+2. Place `BlissGems-X.X.X.jar` in your server's `plugins/` folder
 3. Restart your server
 
 The plugin will generate its configuration files:
@@ -37,9 +29,19 @@ The plugin will generate its configuration files:
 plugins/
 ├── BlissGems/
 │   ├── config.yml
-│   ├── gems.yml
-│   └── data/
+│   ├── data/
+│   └── ...
 ```
+
+### Step 2: Optional - Install Oraxen (for custom visuals)
+
+For enhanced custom item visuals, install Oraxen:
+
+1. Download Oraxen from SpigotMC or Polymart
+2. Place `Oraxen.jar` in your `plugins/` folder
+3. Restart your server to generate Oraxen configuration files
+
+**Note:** BlissGems has a built-in fallback system that works without Oraxen using PDC + Custom Model Data.
 
 ### Step 3: Verify Installation
 
@@ -109,33 +111,40 @@ Or restart your server to apply changes.
 Test the plugin by giving yourself a gem:
 
 ```bash
-/blissgems give <player> <gem_type>
+/bliss give <player> <gem_type> [tier]
 ```
 
 Example:
 ```bash
-/blissgems give Notch astra
+/bliss give Notch astra 1
+/bliss give Steve fire 2
 ```
+
+**Arguments:**
+- `<player>` - Target player name
+- `<gem_type>` - Gem type: astra, fire, flux, life, puff, speed, strength, wealth
+- `[tier]` - Optional tier (1 or 2), defaults to 1
 
 ### Using Gems
 
-1. **Hold the gem** in your main hand
-2. **Right-click** to activate the gem's ability
-3. **Check cooldown** - abilities have cooldown periods
+1. **Hold the gem** in your main hand or offhand
+2. **Right-click** to activate the gem's primary ability
+3. **Shift + Right-click** (Tier 2) to activate secondary ability
 4. **Monitor energy** - gems consume energy when used
+5. Use `/bliss info` to check energy and cooldowns
 
 ### Check Gem Information
 
 View details about a gem you're holding:
 
 ```bash
-/blissgems info
+/bliss info
 ```
 
 This displays:
-- Gem type
-- Current energy level
-- Energy state (PRISTINE, GOOD, etc.)
+- Gem type and tier
+- Current energy level (0-10)
+- Energy state (BROKEN, PRISTINE, etc.)
 - Ability cooldown status
 
 ## Configuration
@@ -219,24 +228,27 @@ Using LuckPerms:
 
 1. Give yourself all gem types:
 ```bash
-/blissgems give YourName astra
-/blissgems give YourName fire
-/blissgems give YourName flux
+/bliss give YourName astra 1
+/bliss give YourName fire 2
+/bliss give YourName flux 1
 # ... etc
 ```
 
-2. Test each ability by right-clicking
+2. Test each ability:
+   - Right-click to activate primary ability
+   - Shift + Right-click (Tier 2) to activate secondary ability
+   - Use `/bliss ability:tertiary` and `/bliss ability:quaternary` for special abilities
+
 3. Verify particle effects appear
-4. Check energy consumption
+4. Check energy consumption with `/bliss info`
 5. Confirm cooldowns work
+6. Test Tier 2 features (auto-enchantments, secondary abilities)
 
 ### Monitor Console
 
-Watch for errors in console:
+Watch for plugin loading:
 ```
-[BlissGems] Player used Astra Gem ability
-[BlissGems] Energy consumed: 5 (95% remaining)
-[BlissGems] Cooldown started: 30 seconds
+[BlissGems] BlissGems v4.1+ has been enabled!
 ```
 
 ## Common Issues

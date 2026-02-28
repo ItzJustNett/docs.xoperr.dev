@@ -158,6 +158,16 @@ Manually activate gem abilities (alternative to right-click).
 /bliss ability:secondary
 ```
 
+**Tertiary Ability (Select Tier 2 gems):**
+```
+/bliss ability:tertiary
+```
+
+**Quaternary Ability (Select Tier 2 gems):**
+```
+/bliss ability:quaternary
+```
+
 **Permission:** `blissgems.use` (default: true)
 
 **Requirements:**
@@ -169,6 +179,7 @@ Manually activate gem abilities (alternative to right-click).
 - When click activation is disabled (`/bliss clickactivation`)
 - For keybind macros
 - For precise ability timing
+- Tertiary/Quaternary abilities are special (Astra Dimensional Drift, Fire Meteor Shower, etc.)
 
 ---
 
@@ -192,6 +203,41 @@ Toggle whether right-clicking activates abilities.
 - Prevent accidental ability activation
 - Custom keybind setups
 - Building/interactions without triggering abilities
+
+---
+
+## Astra Gem Commands
+
+These commands only work when holding an Astra gem.
+
+### View Captured Souls
+View all souls you've captured in your gem.
+
+**Usage:**
+```
+/bliss souls
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Output:**
+Lists all captured mobs stored in your Astra gem (max 2).
+
+---
+
+### Release Captured Souls
+Release all captured souls from your gem.
+
+**Usage:**
+```
+/bliss release
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Effect:**
+- Releases all captured souls in LIFO order (last captured = first released)
+- Souls spawn near the player
 
 ---
 
@@ -222,7 +268,7 @@ Open your personal 9-slot storage inventory.
 ---
 
 ### Amplify Enchantments
-Temporarily enhance all enchantments on held items.
+Temporarily enhance all active potion effects.
 
 **Usage:**
 ```
@@ -236,13 +282,30 @@ Temporarily enhance all enchantments on held items.
 - Cooldown: 180 seconds (3 minutes)
 
 **Effect:**
+- Amplify all active potion effects by +1 level (max level 5)
 - Duration: 45 seconds
-- Enhances enchantments beyond normal limits
-- Sharpness V → Sharpness VII
-- Fortune III → Fortune V
-- Etc.
 
 **Visual:** Enchant glint particles
+
+---
+
+### Auto-smelt Toggle
+Toggle ore auto-smelting on/off for the Wealth gem.
+
+**Usage:**
+```
+/bliss autosmelt
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Requirements:**
+- Must be holding Wealth gem (Tier 2)
+- No cooldown
+
+**Effect:**
+- Toggles automatic ore smelting when mining
+- Setting persists through logout
 
 ---
 
@@ -310,6 +373,23 @@ Shows all players you've trusted.
 
 ---
 
+### Click Activation Toggle
+Toggle whether right-clicking activates abilities (Alias: toggle_click).
+
+**Usage:**
+```
+/bliss toggle_click
+```
+
+**Permission:** `blissgems.use` (default: true)
+
+**Effect:**
+- Same as `/bliss clickactivation`
+- Toggles on/off for the player
+- Setting persists through logout
+
+---
+
 ## Permissions
 
 ### Admin Permissions
@@ -328,11 +408,14 @@ Shows all players you've trusted.
 - Use gem abilities
 - `/bliss info`
 - `/bliss withdraw`
-- `/bliss ability:main` and `/bliss ability:secondary`
+- `/bliss ability:main`, `/bliss ability:secondary`, `/bliss ability:tertiary`, `/bliss ability:quaternary`
 - `/bliss trust`, `/bliss untrust`, `/bliss trustedlist`
-- `/bliss clickactivation`
+- `/bliss clickactivation` / `/bliss toggle_click`
 - `/bliss pockets` (Wealth gem)
 - `/bliss amplify` (Wealth gem)
+- `/bliss autosmelt` (Wealth gem)
+- `/bliss souls` (Astra gem)
+- `/bliss release` (Astra gem)
 - Default: true (all players)
 
 ---
@@ -363,7 +446,8 @@ All commands support tab completion:
 ```
 /bliss <TAB>
   give, energy, reload, withdraw, info, ability:main, ability:secondary,
-  trust, untrust, trustedlist, clickactivation, pockets, amplify
+  ability:tertiary, ability:quaternary, trust, untrust, trustedlist,
+  clickactivation, pockets, amplify, autosmelt, souls, release
 
 /bliss give <TAB>
   <player names>
