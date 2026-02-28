@@ -147,14 +147,32 @@ abilities:
 
   # Cooldown times (in seconds)
   cooldowns:
-    astra: 30
-    fire: 20
-    flux: 45
-    life: 25
-    puff: 15
-    speed: 10
-    strength: 20
-    wealth: 60
+    # Primary ability cooldowns
+    astra_daggers: 15
+    fire_fireball: 10
+    flux_beam: 60
+    life_drainer: 30
+    puff_dash: 5
+    speed_sedative: 35
+    strength_bloodthorns: 20
+    wealth_durability: 30
+
+    # Secondary (Tier 2) ability cooldowns
+    astra_projection: 60
+    fire_campfire: 60
+    flux_ground: 20
+    life_circle: 60
+    puff_bash: 10
+    speed_storm: 45
+    strength_frailer: 25
+    wealth_rich_rush: 540
+
+    # Tertiary/Quaternary ability cooldowns
+    astra_drift: 90
+    astra_void: 120
+    fire_crisp: 90
+    fire_meteor: 120
+    speed_adrenaline: 90
 
   # Cooldown reduction at PRISTINE+ states
   cooldown_reduction:
@@ -168,99 +186,184 @@ abilities:
 # Gem-Specific Settings
 # ========================================
 
-# Astra Gem (Teleportation)
+# Astra Gem (Astral Daggers & Projection)
 astra:
   enabled: true
-  max_distance: 50
-  prevent_fall_damage: true
-  teleport_through_glass: true
-  cross_dimension: false
-  particles: "PORTAL"
+  # Astral Daggers
+  daggers_damage: 4.0
+  daggers_count: 3
+  daggers_spread: 15           # degrees
+  daggers_range: 15            # blocks
+  # Astral Projection
+  projection_duration: 5       # seconds
+  projection_radius: 150       # blocks
+  # Dimensional Drift
+  drift_duration: 15           # seconds
+  # Dimensional Void
+  void_radius: 10              # blocks
+  void_duration: 8             # seconds
+  # Soul mechanics
+  max_captured_souls: 2
+  phase_chance: 0.15           # 15% chance to negate damage
+  particles: "ELECTRIC_SPARK"
   sound: "ENTITY_ENDERMAN_TELEPORT"
 
-# Fire Gem (Fire Blast)
+# Fire Gem (Charged Fireball)
 fire:
   enabled: true
-  damage: 12
-  fire_duration: 100        # ticks (5 seconds)
-  explosion_radius: 3.0
-  destroy_blocks: false
-  fire_resistance: true     # Grant fire resistance while holding
+  # Charged Fireball
+  fireball_damage_min: 6.0
+  fireball_damage_max: 18.0
+  fireball_charge_time: 15     # seconds
+  # Cozy Campfire
+  campfire_radius: 5           # blocks
+  campfire_duration: 15        # seconds
+  campfire_healing: 0.4        # HP per second
+  campfire_burn_damage: 2.0    # HP per second
+  campfire_regen_level: 4
+  # Crisp ability
+  crisp_radius: 10             # blocks
+  crisp_duration: 15           # seconds
+  # Meteor Shower
+  meteor_aoe: 8                # blocks
+  meteor_damage: 5.0           # HP per meteor
+  meteor_range: 50             # blocks sight range
+  fire_resistance: true        # Grant fire resistance while holding
   particles: "FLAME"
   sound: "ENTITY_BLAZE_SHOOT"
 
-# Flux Gem (Ground & Ray)
+# Flux Gem (Flux Beam & Ground)
 flux:
   enabled: true
+  # Flux Beam ability settings
+  beam_range: 30            # blocks
+  beam_damage_base: 5.0     # HP uncharged
+  beam_charge_time: 15      # seconds
+  beam_armor_damage: 150    # durability at 100% charge
   # Ground ability settings
-  ground_range: 20          # blocks
-  stun_duration: 100        # ticks (5 seconds)
-
-  # Flux Ray ability settings (Tier 2)
-  ray_range: 20             # blocks
-  ray_duration: 160         # ticks (8 seconds)
-  ray_damage_per_second: 1.0 # HP (0.5 hearts)
+  ground_range: 15          # blocks
+  ground_stun_duration: 3   # seconds (Slowness 255 + Mining Fatigue 255)
+  # Flow State passive
+  flow_max_level: 5
+  flow_timeout: 3           # seconds
+  # Shocking Arrows passive
+  shocking_arrow_damage: 2.5 # HP
+  shocking_arrow_cooldown: 8 # seconds
 
   particles: "ELECTRIC_SPARK"
   sound: "ENTITY_LIGHTNING_BOLT_THUNDER"
 
-# Life Gem (Healing)
+# Life Gem (Heart Drainer & Circle of Life)
 life:
   enabled: true
-  heal_amount: 12           # Half-hearts
-  remove_effects: true      # Remove negative effects
-  regeneration_duration: 100 # ticks (5 seconds)
-  regeneration_level: 2
-  heal_nearby: true         # Heal nearby players
-  heal_radius: 5.0
-  death_prevention: true    # Prevent death once (PRISTINE+3 required)
+  # Heart Drainer ability
+  drainer_range: 15         # blocks
+  drainer_duration: 20      # seconds (Wither II)
+  # Circle of Life ability
+  circle_radius: 8          # blocks
+  circle_duration: 10       # seconds
+  circle_caster_regen: 3    # Regen level III
+  circle_enemy_wither: 2    # Wither II level
+  # Passive healing
+  passive_heal_t1: 0.3      # hearts per tick
+  passive_heal_t2: 0.5      # hearts per tick
+  # Undead damage bonus
+  undead_damage_t1: 2.0     # 2x multiplier
+  undead_damage_t2: 3.0     # 3x multiplier
+  # Golden Apple bonus
+  golden_apple_absorption_t1: 1
+  golden_apple_absorption_t2: 2
   particles: "HEART"
   sound: "ENTITY_PLAYER_LEVELUP"
 
-# Puff Gem (Cloud Step)
+# Puff Gem (Dash & Breezy Bash)
 puff:
   enabled: true
-  platform_duration: 60     # ticks (3 seconds)
-  max_height: 5             # blocks
-  prevent_fall_damage: true
-  create_permanent: false   # Allow permanent clouds (admin only)
-  block_type: "BARRIER"     # Platform block type
+  # Dash ability
+  dash_velocity: 2.5        # direction multiplier
+  dash_vertical_boost: 0.3  # Y velocity
+  dash_t2_damage: 2.0       # HP damage to nearby mobs
+  # Breezy Bash ability
+  bash_velocity: 2.0        # Y velocity (launch up)
+  bash_fall_immunity: 10    # seconds
+  # Passives
+  prevent_fall_damage: true # Always true
+  double_jump_t1: 0.6       # velocity
+  double_jump_t2: 0.8       # velocity
+  launch_on_hit: true       # Hitting with mainhand launches
+  sculk_immunity_t2: true   # T2 only: sculk shriekers/sensors don't trigger
   particles: "CLOUD"
   sound: "ENTITY_SHEEP_AMBIENT"
 
-# Speed Gem (Speed Boost)
+# Speed Gem (Speed Abilities)
 speed:
   enabled: true
-  speed_multiplier: 3.0     # 300% speed
-  duration: 160             # ticks (8 seconds)
-  jump_boost: true
-  jump_level: 2
-  hunger_increase: true     # Slightly increase hunger
-  fall_damage_reduction: 0.5 # 50% reduction
+  # Sloth's Sedative ability
+  sedative_radius: 10       # blocks
+  sedative_slowness: 4      # level IV
+  sedative_fatigue: 3       # level III
+  sedative_duration: 10     # seconds
+  # Speed Storm ability
+  storm_speed_level: 6      # Speed VI
+  storm_duration: 10        # seconds
+  # Adrenaline Rush ability
+  adrenaline_duration: 6    # seconds combat mode
+  adrenaline_speed_max: 10  # max Speed X at 10 energy
+  adrenaline_remove_cooldown: true  # removes weapon attack cooldown
+  # Speed passives
+  passive_speed_t1: 1       # Speed I
+  passive_speed_t2: 2       # Speed II
   particles: "CRIT"
   sound: "ENTITY_HORSE_GALLOP"
 
-# Strength Gem (Damage Boost)
+# Strength Gem (Strength Abilities)
 strength:
   enabled: true
-  damage_multiplier: 2.0    # Double damage
-  duration: 240             # ticks (12 seconds)
-  knockback_increase: 0.5   # 50% more knockback
-  mining_speed_boost: true
-  critical_multiplier: 3.0  # Triple damage on crits
+  # Bloodthorns ability
+  bloodthorns_radius: 5     # blocks AoE
+  bloodthorns_base_damage: 5.0  # HP base
+  bloodthorns_health_scaling: true  # damage scales with health %
+  # Frailer Power ability (T2)
+  frailer_range: 15         # blocks
+  frailer_weakness: 3       # level III for 10s
+  frailer_wither: 2         # level II for 5s
+  # Chad Strength ability (T2)
+  chad_strength_level: 2    # Strength II
+  chad_resistance_level: 2  # Resistance II
+  chad_duration: 10         # seconds
+  # Passive strength
+  passive_strength_t1: 1    # Strength I
+  passive_strength_t2: 2    # Strength II
+  # Critical hit tracking
+  critical_hits_per_charge_t1: 8
+  critical_hits_per_charge_t2: 3
   particles: "CRIT_MAGIC"
   sound: "ENTITY_ENDER_DRAGON_GROWL"
 
-# Wealth Gem (Fortune)
+# Wealth Gem (Fortune & Economy)
 wealth:
   enabled: true
-  fortune_level: 3
-  duration: 600             # ticks (30 seconds)
-  increased_drops: true
-  drop_multiplier: 2.0
-  experience_multiplier: 1.5
-  rare_loot_boost: true
-  duplicate_chance: 0.05    # 5% chance to duplicate drops
+  # Durability Chip ability
+  durability_chip_toggle: true  # toggle 2x durability damage on tools
+  # Rich Rush ability (T2)
+  rich_rush_haste_level: 3  # Haste III
+  rich_rush_luck_level: 4   # Luck IV
+  rich_rush_duration: 120   # seconds (2 minutes)
+  # Pockets ability (T2)
+  pockets_slots: 9          # personal inventory size
+  # Amplify ability (T2)
+  amplify_max_level: 5      # max potion effect level
+  amplify_duration: 45      # seconds
+  # Auto-smelt ability (T2)
+  autosmelt_enabled: true   # toggle on/off
+  # Unfortunate ability (T1+T2)
+  unfortunate_unluck_level: 3  # Unluck III
+  unfortunate_duration: 40  # seconds
+  unfortunate_range: 15     # blocks
+  # Passives
+  passive_luck_t1: 1        # Luck I
+  passive_luck_t2: 2        # Luck II
+  hero_of_village: true     # Always active
   particles: "VILLAGER_HAPPY"
   sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
 
